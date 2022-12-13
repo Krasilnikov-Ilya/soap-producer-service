@@ -1,4 +1,4 @@
-package org.example;
+package org.example.repositories;
 
 import io.spring.guides.gs_producing_web_service.Country;
 import io.spring.guides.gs_producing_web_service.Currency;
