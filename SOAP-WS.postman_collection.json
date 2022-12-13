@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "3b75ea0c-dba7-48ce-92af-0d80d5bd134a",
+		"name": "SOAP-WS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetWsdl",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ws/countries.wsdl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ws",
+						"countries.wsdl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\n\t\t\t\t  xmlns:gs=\"http://spring.io/guides/gs-producing-web-service\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <gs:getCountryRequest>\r\n         <gs:name>Spain</gs:name>\r\n      </gs:getCountryRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ws",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ws"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
