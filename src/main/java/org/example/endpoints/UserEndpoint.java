@@ -20,9 +20,9 @@ public class UserEndpoint {
         this.personRepository = personRepository;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUserRequest")
     @ResponsePayload
-    public GetUserResponse getCountry(@RequestPayload GetUserRequest request) {
+    public GetUserResponse getUser(@RequestPayload GetUserRequest request) {
         GetUserResponse response = new GetUserResponse();
         response.setUser(personRepository.findUser(request.getId()));
         return response;
