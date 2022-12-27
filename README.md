@@ -11,8 +11,6 @@
 # Получить файл wsdl
 http://localhost:8080/ws/users.wsdl
 
-# Use data from file
-curl --header "content-type: text/xml" -d @request.xml http://localhost:8080/ws
 
 # Use inline XML data
 curl <<-EOF -fsSL -H "content-type: text/xml" -d @- http://localhost:8080/ws \
