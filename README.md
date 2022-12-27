@@ -7,6 +7,15 @@
 
 Подключение бызы в качестве репозитория происходит посредством **Hibernate** и **Spring Data JPA**
 
+```shell
+# Запуск приложения
+mvn spring-boot:run -f pom.xml -Dspring-boot.run.jvmArguments="-Dfile.encoding=UTF-8 
+-Ddatabase.driver.className=org.database.Driver 
+-Ddatabase.url=jdbc:database_type://database_host:database:port/database_path 
+-Ddatabase.username=database_username 
+-Ddatabase.password=database_password"
+```
+
 ```bash
 # Получить файл wsdl
 http://localhost:8080/ws/users.wsdl
@@ -20,9 +29,9 @@ curl <<-EOF -fsSL -H "content-type: text/xml" -d @- http://localhost:8080/ws \
                                   xmlns:gs="http://spring.io/guides/gs-producing-web-service">
    <soapenv:Header/>
    <soapenv:Body>
-      <gs:getUserRequest>
+      <gs:getPersonRequest>
          <gs:id>1</gs:id>
-      </gs:getUserRequest>
+      </gs:getPersonRequest>
    </soapenv:Body>
 </soapenv:Envelope>
 

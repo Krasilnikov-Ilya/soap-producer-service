@@ -2,7 +2,7 @@ package org.example.controllers;
 
 import io.spring.guides.gs_producing_web_service.Person;
 import lombok.RequiredArgsConstructor;
-import org.example.converters.Mapper;
+import org.example.converters.DtoMapper;
 import org.example.repositories.PersonRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,19 +24,19 @@ public class PersonController {
 
     private final PersonRepository personRepository;
 
-    @GetMapping(value = "/user/{userId}")
-    public ResponseEntity<Person> getUser(@PathVariable Long userId) {
-        Person person = personRepository.findById(userId)
-                .map(Mapper::fromDbRecord).orElse(null);
+    @GetMapping(value = "/user/{personId}")
+    public ResponseEntity<Person> getPerson(@PathVariable Long personId) {
+        Person person = personRepository.findById(personId)
+                .map(DtoMapper::fromDbRecord).orElse(null);
         if (person == null) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
     @GetMapping(value = "/users")
-    public ResponseEntity<List<Person>> getUser() {
+    public ResponseEntity<List<Person>> getPerson() {
         List<Person> persons = personRepository.findAll()
                 .stream()
-                .map(Mapper::fromDbRecord)
+                .map(DtoMapper::fromDbRecord)
                 .collect(Collectors.toList());
         if (persons.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(persons, HttpStatus.OK);

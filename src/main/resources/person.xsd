@@ -1,7 +1,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://spring.io/guides/gs-producing-web-service"
            targetNamespace="http://spring.io/guides/gs-producing-web-service" elementFormDefault="qualified">
 
-    <xs:element name="getUserRequest">
+    <xs:element name="getPersonRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id" type="xs:long"/>
@@ -9,26 +9,26 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="addUserRequest">
+    <xs:element name="addPersonRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="user" type="tns:person"/>
+                <xs:element name="person" type="tns:person"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getUserResponse">
+    <xs:element name="getPersonResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="user" type="tns:person"/>
+                <xs:element name="person" type="tns:person"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="addUserResponse">
+    <xs:element name="addPersonResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="user" type="tns:person"/>
+                <xs:element name="person" type="tns:person"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

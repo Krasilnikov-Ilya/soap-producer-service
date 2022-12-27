@@ -33,8 +33,23 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return wsdl11Definition;
     }
 
+    @Bean(name = "cars")
+    public DefaultWsdl11Definition defaultWsdl11DefinitionCars(XsdSchema usersSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("UsersPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://spring.io/guides/gs-producing-web-service");
+        wsdl11Definition.setSchema(usersSchema);
+        return wsdl11Definition;
+    }
+
     @Bean
     public XsdSchema usersSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("users.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("person.xsd"));
+    }
+
+    @Bean
+    public XsdSchema carsSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("car.xsd"));
     }
 }

@@ -1,9 +1,9 @@
 package org.example.endpoints;
 
-import io.spring.guides.gs_producing_web_service.AddUserRequest;
-import io.spring.guides.gs_producing_web_service.GetUserRequest;
-import io.spring.guides.gs_producing_web_service.GetUserResponse;
-import org.example.converters.Mapper;
+import io.spring.guides.gs_producing_web_service.AddPersonRequest;
+import io.spring.guides.gs_producing_web_service.GetPersonRequest;
+import io.spring.guides.gs_producing_web_service.GetPersonResponse;
+import org.example.converters.DtoMapper;
 import org.example.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -24,20 +24,20 @@ public class PersonEndpoint {
         this.personRepository = personRepository;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUserRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPersonRequest")
     @ResponsePayload
-    public GetUserResponse getUser(@RequestPayload GetUserRequest request) {
-        GetUserResponse response = new GetUserResponse();
-        response.setUser(Mapper.fromDbRecord(Objects.requireNonNull(personRepository.findById(request.getId()).orElse(null))));
+    public GetPersonResponse getUser(@RequestPayload GetPersonRequest request) {
+        GetPersonResponse response = new GetPersonResponse();
+        response.setPerson(DtoMapper.fromDbRecord(Objects.requireNonNull(personRepository.findById(request.getId()).orElse(null))));
         return response;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addUserRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addPersonRequest")
     @ResponsePayload
-    public GetUserResponse addUser(@RequestPayload AddUserRequest request) {
-        Long id = personRepository.saveAndFlush(Mapper.toDbRecord(request.getUser())).getId();
-        GetUserResponse response = new GetUserResponse();
-        response.setUser(Mapper.fromDbRecord(Objects.requireNonNull(personRepository.findById(id).orElse(null))));
+    public GetPersonResponse addUser(@RequestPayload AddPersonRequest request) {
+        Long id = personRepository.saveAndFlush(DtoMapper.toDbRecord(request.getPerson())).getId();
+        GetPersonResponse response = new GetPersonResponse();
+        response.setPerson(DtoMapper.fromDbRecord(Objects.requireNonNull(personRepository.findById(id).orElse(null))));
         return response;
     }
 }
