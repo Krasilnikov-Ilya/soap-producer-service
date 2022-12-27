@@ -7,7 +7,7 @@ import org.example.jpa.PersonRecord;
 import java.math.BigDecimal;
 
 
-public class RecordMapper {
+public class SoapMapper {
 
     public static Person fromDbRecord(PersonRecord record) {
         Person person = new Person();
